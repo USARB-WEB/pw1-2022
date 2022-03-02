@@ -3,13 +3,7 @@ const newTodoInput = document.getElementById("newTodoInput");
 const todoListContainer = document.getElementById("todoListContainer");
 const emptyTodoList = document.getElementById("emptyTodoList");
 
-
-const todoList = [
-    "Todo 1",
-    "Todo 2",
-    "Todo 3"
-];
-
+const todoList = [];
 
 const showTodoList = () => {
     if(todoList.length){
@@ -22,6 +16,7 @@ const showTodoList = () => {
             removeTodoButton.addEventListener("click", () => {
                 removeTodo(todoItemIndex);
                 showTodoList();
+                saveToLocalStorage();
             });
             newTodoItem.append(removeTodoButton);
             todoListContainer.append(newTodoItem);
@@ -38,12 +33,22 @@ const addTodo = (value) => {
     todoList.push(value);
 }
 
-
 const removeTodo = (index) => {
     todoList.splice(index, 1);
 }
 
+const saveToLocalStorage = () => {
+    localStorage.setItem("todoList", JSON.stringify(todoList));
+}
+
+const getFromLocalStorage = () => {
+    todoList.splice(0, todoList.length, ...JSON.parse(localStorage.getItem("todoList")));
+}
+
+////////
+
 document.addEventListener("DOMContentLoaded", () => {
+    getFromLocalStorage();
     showTodoList();
 });
 
@@ -51,4 +56,5 @@ addTodoButton.addEventListener("click", () => {
     addTodo(newTodoInput.value);
     showTodoList();
     newTodoInput.value = "";
-})
+    saveToLocalStorage();
+});
