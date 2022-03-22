@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="app.css">
+</head>
+<body>
+    <div id="app">
+        <div :style="{backgroundColor: appBackgroundColor}">
+            {{ message }} <br>
+            My name is: <input type="text" v-model="name"> {{ reversedName }}
+            <hr>
+            x = <input type="number" v-model="x"> <br>
+            y = <input type="number" v-model="y"> <br>
+            {{ x }} + {{ y }} = {{ sum }}
+            <hr>
+            <ul>
+                <li v-for="student of students">{{ student.name }}, {{ student.age }} |  <input type="number" v-model="student.salary"></li>
+            </ul>
+            Total salary: {{ totalSalary }}
+            <hr>
+            isWeekend = {{ isWeekend }} <br>
+            <div v-show="isWeekend"  style="background-color: green;">Wow. Weekend!</div>
+            <div v-show="!isWeekend" style="background-color: red;">I am goind to the university:(</div>
+            <hr>
+            <input type="number" v-model="number"> <br>
+            <div v-if="number < 0 " style="background-color: red;">Negative number</div>
+            <div v-else-if="number > 0" style="background-color: green;">Positive number</div>
+            <div v-else style="background-color: grey;">Zero</div>
+    
+    
+            <hr>
+            <hr>
+            <hr>
+            <button @click="changeBackgroudColorToRed()">Red</button>
+            <button @click="changeBackgroudColorToGreen()">Green</button>
+            <button @click="changeBackgroudColorToBlue()">Blue</button>
+
+
+            <hr>
+            <hr>
+            <hr>
+            <ul>
+                <li 
+                    v-for="number in 100"
+                    :class="{
+                        even: number % 2 === 0,
+                        odd: number % 2 !== 0,
+                        divide5: number % 5 === 0
+
+                    }"
+                >{{ number }}</li>
+            </ul>
+        </div>
+    </div>
+
+    
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="app.js"></script>
+</body>
+</html>
