@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="app.css">
+</head>
+<body>
+    <div id="app">
+        <div :style="{backgroundColor: appBackgroundColor}">
+            {{ message }} <br>
+            
+            My name is: <input type="text" v-model="name">
+            {{ reversedName }}
+            <hr>
+            <ul>
+                <li v-for="student of students">{{ student.name }}, <strong>{{ student.age }}</strong> | <input type="number" v-model="student.salary"></li>
+            </ul>
+            Total salary: {{ totalSalary }}
+            <div> {{ showed }} </div>
+            <div v-if="showed">Variable showed = true</div>
+            <div v-else>Variabsle is False</div>
+            <hr>
+            <hr>
+    
+            <input type="number" v-model="number">
+            <br>
+            <div>Number = {{ number }}</div>
+            <div v-if="number > 0" style="background-color: green;">Positive number</div>
+            <div v-else-if="number === 0" style="background-color: grey;">Zero</div>
+            <div v-else style="background-color: red;">Negative number</div>
+            <hr>
+            <button v-show="number===0">ZERO</button>
+    
+            <hr>
+            x = <input type="number" v-model="x"> <br>
+            y = <input type="number" v-model="y"> <br>
+            {{ x }} + {{ y }} = {{ sum }}
+    
+    
+            <hr>
+            <hr>
+            <hr>
+            <button @click="changeColorToRed()">Red</button>
+            <button @click="changeColorToGreen()">Green</button>
+            <button @click="changeColorToBlue()">Blue</button>
+
+            <hr>
+            <hr>
+            <hr>
+            <ul>
+                <li v-for="number in 100">
+                    <span 
+                        :class="{
+                            odd: number % 2 !== 0, 
+                            even: number % 2 === 0,
+                            div5: number % 5 === 0
+                        }"
+                    >{{ number }}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="app.js"></script>
+</body>
+</html>
